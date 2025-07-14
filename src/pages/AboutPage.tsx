@@ -95,22 +95,22 @@ const AboutPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: "Sarah Green",
+                name: "Subina Khadka",
                 role: "Founder & Head Horticulturist",
                 image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg",
                 bio: "With over 15 years of experience in horticulture, Sarah founded Green Paradise to share her passion for plants with fellow enthusiasts."
               },
               {
-                name: "Mike Botanist",
+                name: "Muskan Khadka",
                 role: "Plant Care Specialist",
                 image: "https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg",
-                bio: "Mike's expertise in plant care and pest management helps our customers keep their plants healthy and thriving year-round."
+                bio: "Muskan's expertise in plant care and pest management helps our customers keep their plants healthy and thriving year-round."
               },
               {
-                name: "Emma Leaf",
+                name: "Aarohi Lamichhane",
                 role: "Community Manager",
                 image: "https://images.pexels.com/photos/1381556/pexels-photo-1381556.jpeg",
-                bio: "Emma builds and nurtures our plant community, connecting enthusiasts and sharing the latest in plant care trends and tips."
+                bio: "Aarohi builds and nurtures our plant community, connecting enthusiasts and sharing the latest in plant care trends and tips."
               }
             ].map((member, index) => (
               <div key={index} className="text-center">

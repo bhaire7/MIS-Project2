@@ -1,25 +1,32 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, ShoppingCart, Leaf } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
+import { useAuth } from '../contexts/AuthContext';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const { state } = useCart();
+  const { user, logout } = useAuth();
 
   const navigation = [
     { name: 'Home', href: '/' },
     { name: 'Plants', href: '/plants' },
     { name: 'Blog', href: '/blogs' },
     { name: 'About', href: '/about' },
-    
   ];
 
   const isActive = (path: string) => {
     if (path === '/' && location.pathname === '/') return true;
     if (path !== '/' && location.pathname.startsWith(path)) return true;
     return false;
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
   };
 
   return (
@@ -48,7 +55,7 @@ const Navbar: React.FC = () => {
                 {item.name}
               </Link>
             ))}
-            
+
             <Link to="/cart" className="relative">
               <ShoppingCart className="h-6 w-6 text-gray-700 hover:text-emerald-600 cursor-pointer transition-colors duration-200" />
               {state.itemCount > 0 && (
@@ -57,6 +64,34 @@ const Navbar: React.FC = () => {
                 </span>
               )}
             </Link>
+
+            {/* Auth Buttons */}
+            {user ? (
+              <div className="flex items-center space-x-2">
+                <span className="text-gray-700">Hi, {user.username}</span>
+                <button
+                  onClick={handleLogout}
+                  className="px-3 py-2 rounded-md text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 transition"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="px-3 py-2 rounded-md text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 transition"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/signup"
+                  className="px-3 py-2 rounded-md text-sm font-medium text-emerald-600 border border-emerald-600 bg-white hover:bg-emerald-50 transition ml-2"
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -96,6 +131,32 @@ const Navbar: React.FC = () => {
                   {item.name}
                 </Link>
               ))}
+              {/* Auth Buttons Mobile */}
+              {user ? (
+                <button
+                  onClick={() => { setIsOpen(false); handleLogout(); }}
+                  className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white bg-emerald-600 hover:bg-emerald-700 mt-2"
+                >
+                  Logout
+                </button>
+              ) : (
+                <>
+                  <Link
+                    to="/login"
+                    onClick={() => setIsOpen(false)}
+                    className="block px-3 py-2 rounded-md text-base font-medium text-white bg-emerald-600 hover:bg-emerald-700 mt-2"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/signup"
+                    onClick={() => setIsOpen(false)}
+                    className="block px-3 py-2 rounded-md text-base font-medium text-emerald-600 border border-emerald-600 bg-white hover:bg-emerald-50 mt-2"
+                  >
+                    Sign Up
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         )}

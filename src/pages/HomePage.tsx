@@ -81,8 +81,7 @@ const HomePage: React.FC = () => {
             </div>
             <div className="relative">
               <img
-                src="https://images.pexels.com/photos/6208092/pexels-photo-6208092.jpeg"
-                alt="Beautiful plants in a modern home"
+                src="src/img/homeplant.jpg"
                 className="rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500"
               />
             </div>

@@ -4,6 +4,7 @@ import { ArrowLeft, ShoppingCart, Heart, Truck, Shield, Leaf } from 'lucide-reac
 import { useCart } from '../contexts/CartContext';
 import { formatPrice } from '../utils/currency';
 import plantsData from '../data/plants.json';
+import PlantCard from '../components/PlantCard';
 
 const PlantDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -75,6 +76,10 @@ const PlantDetailPage: React.FC = () => {
       description: "Expert guidance included"
     }
   ];
+
+  const similarPlants = plantsData
+    .filter(p => p.category === plant.category && p.id !== plant.id)
+    .slice(0, 3);
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -201,6 +206,18 @@ const PlantDetailPage: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Plants you may like */}
+        {similarPlants.length > 0 && (
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Plants you may like</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+              {similarPlants.map(similarPlant => (
+                <PlantCard key={similarPlant.id} plant={similarPlant} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,11 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
+import { useAuth } from '../contexts/AuthContext';
 import { formatPrice, calculateTotal } from '../utils/currency';
 
 const CartPage: React.FC = () => {
   const { state, dispatch } = useCart();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [showLoginMsg, setShowLoginMsg] = React.useState(false);
 
   const updateQuantity = (id: number, quantity: number) => {
     if (quantity <= 0) {
@@ -21,6 +25,16 @@ const CartPage: React.FC = () => {
 
   const clearCart = () => {
     dispatch({ type: 'CLEAR_CART' });
+  };
+
+  const handleCheckout = () => {
+    if (!user) {
+      setShowLoginMsg(true);
+      setTimeout(() => setShowLoginMsg(false), 2000);
+      navigate('/login');
+      return;
+    }
+    navigate('/checkout');
   };
 
   if (state.items.length === 0) {
@@ -152,9 +166,15 @@ const CartPage: React.FC = () => {
                 </div>
               </div>
 
-              <button className="w-full bg-emerald-600 text-white font-semibold py-4 rounded-lg hover:bg-emerald-700 transition-all duration-200 transform hover:scale-105 shadow-lg mb-4">
+              <button
+                className="w-full bg-emerald-600 text-white font-semibold py-4 rounded-lg hover:bg-emerald-700 transition-all duration-200 transform hover:scale-105 shadow-lg mb-4"
+                onClick={handleCheckout}
+              >
                 Proceed to Checkout
               </button>
+              {showLoginMsg && (
+                <div className="text-red-600 text-center mb-2">Please log in to proceed to checkout.</div>
+              )}
 
               <div className="text-center text-sm text-gray-500">
                 <p>Free shipping on all orders</p>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
+import { useAuth } from '../contexts/AuthContext';
 import { formatPrice } from '../utils/currency';
 
 interface Plant {
@@ -21,9 +22,14 @@ interface PlantCardProps {
 const PlantCard: React.FC<PlantCardProps> = ({ plant }) => {
   const { dispatch } = useCart();
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
+    if (!user) {
+      navigate('/login');
+      return;
+    }
     if (plant.inStock) {
       dispatch({
         type: 'ADD_ITEM',
@@ -39,6 +45,10 @@ const PlantCard: React.FC<PlantCardProps> = ({ plant }) => {
 
   const handleBuyNow = (e: React.MouseEvent) => {
     e.preventDefault();
+    if (!user) {
+      navigate('/login');
+      return;
+    }
     if (plant.inStock) {
       // Navigate to checkout with this specific item
       navigate('/checkout', {
@@ -59,7 +69,7 @@ const PlantCard: React.FC<PlantCardProps> = ({ plant }) => {
       <Link to={`/plant/${plant.id}`}>
         <div className="relative">
           <img
-            src={plant.image}
+            src={`/${plant.image}`}
             alt={plant.name}
             className="w-full h-64 object-cover"
           />

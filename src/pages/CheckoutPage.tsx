@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useLocation, useNavigate, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, CreditCard, Truck, Shield, CheckCircle } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
+import { useAuth } from '../contexts/AuthContext';
 import { formatPrice } from '../utils/currency';
 
 interface CheckoutItem {
@@ -16,6 +17,7 @@ const CheckoutPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { state: cartState, dispatch } = useCart();
+  const { user } = useAuth();
   const [checkoutItems, setCheckoutItems] = useState<CheckoutItem[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
@@ -53,6 +55,11 @@ const CheckoutPage: React.FC = () => {
       navigate('/cart');
     }
   }, [location.state, cartState.items, navigate]);
+
+  // Redirect to login if not logged in
+  if (!user) {
+    return <Navigate to="/login" replace state={{ from: '/checkout' }} />;
+  }
 
   const subtotal = checkoutItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const tax = Math.round(subtotal * 0.13);
