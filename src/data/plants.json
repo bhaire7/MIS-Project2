@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Monstera Deliciosa",
+    "price": 4599,
+    "description": "The Monstera Deliciosa, also known as the Swiss Cheese Plant, is a stunning tropical houseplant known for its large, glossy, heart-shaped leaves with natural holes. Perfect for adding a dramatic touch to any indoor space.",
+    "image": "src/img/plant1.jpg",
+    "category": "Indoor",
+    "inStock": true
+  },
+  {
+    "id": 2,
+    "name": "Snake Plant",
+    "price": 2999,
+    "description": "Sansevieria trifasciata, commonly known as the Snake Plant, is an incredibly low-maintenance plant perfect for beginners. Its tall, sword-like leaves with yellow edges make it a striking addition to any room.",
+    "image": "src/img/plant2.jpg",
+    "category": "Indoor",
+    "inStock": true
+  },
+  {
+    "id": 3,
+    "name": "Fiddle Leaf Fig",
+    "price": 8999,
+    "description": "The Fiddle Leaf Fig is a popular indoor tree with large, violin-shaped leaves. This statement plant can grow up to 6 feet tall indoors and adds instant elegance to any space.",
+    "image": "src/img/plant3.jpg",
+    "category": "Indoor",
+    "inStock": false
+  },
+  {
+    "id": 4,
+    "name": "Peace Lily",
+    "price": 3499,
+    "description": "Spathiphyllum, commonly known as Peace Lily, produces beautiful white flowers and is known for its air-purifying qualities. It thrives in low to medium light conditions.",
+    "image": "src/img/plant4.jpg",
+    "category": "Indoor",
+    "inStock": true
+  },
+  {
+    "id": 5,
+    "name": "Lavender",
+    "price": 1999,
+    "description": "Fragrant lavender is perfect for outdoor gardens and containers. Known for its calming scent and beautiful purple flowers, it's also used for medicinal and culinary purposes.",
+    "image": "src/img/plant5.jpg",
+    "category": "Outdoor",
+    "inStock": true
+  },
+  {
+    "id": 6,
+    "name": "Rose Bush",
+    "price": 3999,
+    "description": "Classic red roses that will bloom beautifully in your garden. These hardy perennials will provide stunning flowers year after year with proper care.",
+    "image": "src/img/plant6.jpg",
+    "category": "Outdoor",
+    "inStock": true
+  },
+  {
+    "id": 7,
+    "name": "Aloe Vera",
+    "price": 2499,
+    "description": "Aloe Vera is a succulent plant known for its medicinal properties. The gel inside its thick leaves can be used to soothe burns and skin irritations.",
+    "image": "src/img/plant7.jpg",
+    "category": "Medicinal",
+    "inStock": true
+  },
+  {
+    "id": 8,
+    "name": "Echinacea",
+    "price": 2799,
+    "description": "Purple Coneflower (Echinacea) is both beautiful and medicinal. Known for its immune-boosting properties, it produces stunning purple flowers that attract butterflies.",
+    "image": "src/img/plant8.jpg",
+    "category": "Medicinal",
+    "inStock": false
+  },
+  {
+    "id": 9,
+    "name": "Rubber Plant",
+    "price": 4299,
+    "description": "The Rubber Plant (Ficus elastica) is an easy-care houseplant with glossy, dark green leaves. It's excellent for beginners and can grow quite large indoors.",
+    "image": "src/img/plant9.jpg",
+    "category": "Indoor",
+    "inStock": true
+  },
+  {
+    "id": 10,
+    "name": "Sunflower",
+    "price": 1299,
+    "description": "Bright and cheerful sunflowers are perfect for outdoor gardens. These annual flowers can grow very tall and their seeds are edible.",
+    "image": "src/img/plant10.jpg",
+    "category": "Outdoor",
+    "inStock": true
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "title": "About Green Paradise",
+  "description": "Welcome to Green Paradise, your premier destination for high-quality plants and expert gardening advice. Founded in 2018, we've been helping plant enthusiasts create their perfect green spaces, whether indoors or outdoors.",
+  "mission": "Our mission is to make plant parenthood accessible and enjoyable for everyone. We believe that bringing nature into your living space not only beautifies your environment but also improves your well-being and connection to the natural world.",
+  "vision": "We envision a world where every home and office is enhanced by the beauty and benefits of plants. Through our carefully curated selection and expert guidance, we aim to inspire and support a global community of plant lovers.",
+  "story": "Green Paradise started as a small local nursery with a big dream - to share our passion for plants with the world. What began as a weekend farmer's market stall has grown into a thriving online business serving plant enthusiasts across the country. Our team of horticulturists and plant care experts hand-select every plant we offer, ensuring you receive only the healthiest, most beautiful specimens.",
+  "values": [
+    {
+      "title": "Quality First",
+      "description": "We source our plants from trusted growers and maintain strict quality standards to ensure every plant arrives healthy and ready to thrive."
+    },
+    {
+      "title": "Expert Guidance",
+      "description": "Our team of plant experts is always ready to help with care advice, troubleshooting, and plant selection to ensure your success."
+    },
+    {
+      "title": "Sustainability",
+      "description": "We're committed to sustainable practices, from eco-friendly packaging to supporting local growers and promoting biodiversity."
+    },
+    {
+      "title": "Community",
+      "description": "We foster a supportive community of plant lovers through our blog, social media, and customer support, sharing knowledge and celebrating successes together."
+    }
+  ]
+}
