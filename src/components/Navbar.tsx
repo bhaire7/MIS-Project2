@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, ShoppingCart, Leaf } from 'lucide-react';
+import { Menu, X, ShoppingCart, Flower } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <Leaf className="h-8 w-8 text-emerald-600" />
+              <Flower className="h-8 w-8 text-emerald-600" />
               <span className="text-xl font-bold text-gray-900">Green Paradise</span>
             </Link>
           </div>

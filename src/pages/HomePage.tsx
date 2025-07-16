@@ -100,15 +100,23 @@ const HomePage: React.FC = () => {
               We're committed to helping you create the perfect green space with premium plants and expert guidance.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {features.map((feature, index) => (
-              <div key={index} className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 text-center group">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 rounded-full mb-6 group-hover:scale-110 transition-transform duration-300">
-                  {feature.icon}
+              <div
+                key={index}
+                className="relative bg-white rounded-2xl shadow-lg pt-12 pb-8 px-6 flex flex-col items-center text-center border-l-4 border-emerald-500 group hover:shadow-2xl transition-shadow duration-300"
+              >
+                <div className="absolute -top-8 left-1/2 -translate-x-1/2">
+                  <div className="w-16 h-16 bg-emerald-100 border-4 border-white rounded-full flex items-center justify-center shadow-md">
+                    {feature.icon}
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 mt-4">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed text-base">
+                  {feature.description}
+                </p>
               </div>
             ))}
           </div>

@@ -1,22 +1,31 @@
-import React from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, ShoppingCart, Heart, Truck, Shield, Leaf } from 'lucide-react';
-import { useCart } from '../contexts/CartContext';
-import { formatPrice } from '../utils/currency';
-import plantsData from '../data/plants.json';
-import PlantCard from '../components/PlantCard';
+import React from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import {
+  ArrowLeft,
+  ShoppingCart,
+  Heart,
+  Truck,
+  Shield,
+  Leaf,
+} from "lucide-react";
+import { useCart } from "../contexts/CartContext";
+import { formatPrice } from "../utils/currency";
+import plantsData from "../data/plants.json";
+import PlantCard from "../components/PlantCard";
 
 const PlantDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { dispatch } = useCart();
   const navigate = useNavigate();
-  const plant = plantsData.find(p => p.id === parseInt(id || '0'));
+  const plant = plantsData.find((p) => p.id === parseInt(id || "0"));
 
   if (!plant) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Plant Not Found</h1>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">
+            Plant Not Found
+          </h1>
           <Link
             to="/plants"
             className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-medium"
@@ -32,13 +41,13 @@ const PlantDetailPage: React.FC = () => {
   const handleAddToCart = () => {
     if (plant.inStock) {
       dispatch({
-        type: 'ADD_ITEM',
+        type: "ADD_ITEM",
         payload: {
           id: plant.id,
           name: plant.name,
           price: plant.price,
-          image: plant.image
-        }
+          image: plant.image,
+        },
       });
     }
   };
@@ -46,15 +55,15 @@ const PlantDetailPage: React.FC = () => {
   const handleBuyNow = () => {
     if (plant && plant.inStock) {
       // Navigate to checkout with this specific item
-      navigate('/checkout', {
+      navigate("/checkout", {
         state: {
           buyNowItem: {
             id: plant.id,
             name: plant.name,
             price: plant.price,
-            image: plant.image
-          }
-        }
+            image: plant.image,
+          },
+        },
       });
     }
   };
@@ -63,22 +72,22 @@ const PlantDetailPage: React.FC = () => {
     {
       icon: <Truck className="h-6 w-6 text-emerald-600" />,
       title: "Free Shipping",
-      description: "On orders over $50"
+      description: "On orders over NRS 1200",
     },
     {
       icon: <Shield className="h-6 w-6 text-emerald-600" />,
       title: "30-Day Guarantee",
-      description: "Healthy arrival guaranteed"
+      description: "Healthy arrival guaranteed",
     },
     {
       icon: <Leaf className="h-6 w-6 text-emerald-600" />,
       title: "Care Support",
-      description: "Expert guidance included"
-    }
+      description: "Expert guidance included",
+    },
   ];
 
   const similarPlants = plantsData
-    .filter(p => p.category === plant.category && p.id !== plant.id)
+    .filter((p) => p.category === plant.category && p.id !== plant.id)
     .slice(0, 3);
 
   return (
@@ -102,12 +111,14 @@ const PlantDetailPage: React.FC = () => {
                 className="w-full h-96 lg:h-full object-cover"
               />
               <div className="absolute top-6 left-6">
-                <span className={`px-4 py-2 rounded-full text-sm font-medium ${
-                  plant.inStock 
-                    ? 'bg-emerald-100 text-emerald-800' 
-                    : 'bg-red-100 text-red-800'
-                }`}>
-                  {plant.inStock ? 'In Stock' : 'Out of Stock'}
+                <span
+                  className={`px-4 py-2 rounded-full text-sm font-medium ${
+                    plant.inStock
+                      ? "bg-emerald-100 text-emerald-800"
+                      : "bg-red-100 text-red-800"
+                  }`}
+                >
+                  {plant.inStock ? "In Stock" : "Out of Stock"}
                 </span>
               </div>
               <div className="absolute top-6 right-6">
@@ -122,7 +133,7 @@ const PlantDetailPage: React.FC = () => {
               <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
                 {plant.name}
               </h1>
-              
+
               <div className="flex items-center space-x-4 mb-6">
                 <span className="text-3xl font-bold text-emerald-600">
                   {formatPrice(plant.price)}
@@ -142,14 +153,14 @@ const PlantDetailPage: React.FC = () => {
                   disabled={!plant.inStock}
                   className={`w-full flex items-center justify-center space-x-3 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 ${
                     plant.inStock
-                      ? 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-lg transform hover:scale-105'
-                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      ? "bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-lg transform hover:scale-105"
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
                   }`}
                 >
                   <ShoppingCart className="h-6 w-6" />
-                  <span>{plant.inStock ? 'Add to Cart' : 'Out of Stock'}</span>
+                  <span>{plant.inStock ? "Add to Cart" : "Out of Stock"}</span>
                 </button>
-                
+
                 {plant.inStock && (
                   <button
                     onClick={handleBuyNow}
@@ -162,14 +173,20 @@ const PlantDetailPage: React.FC = () => {
 
               {/* Features */}
               <div className="border-t pt-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Why Choose Us?</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                  Why Choose Us?
+                </h3>
                 <div className="space-y-4">
                   {features.map((feature, index) => (
                     <div key={index} className="flex items-center space-x-3">
                       {feature.icon}
                       <div>
-                        <p className="font-medium text-gray-900">{feature.title}</p>
-                        <p className="text-sm text-gray-600">{feature.description}</p>
+                        <p className="font-medium text-gray-900">
+                          {feature.title}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          {feature.description}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -181,28 +198,36 @@ const PlantDetailPage: React.FC = () => {
 
         {/* Care Instructions */}
         <div className="mt-12 bg-white rounded-2xl shadow-lg p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Care Instructions</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Care Instructions
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">💧</span>
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Watering</h3>
-              <p className="text-gray-600">Water when top inch of soil feels dry to touch.</p>
+              <p className="text-gray-600">
+                Water when top inch of soil feels dry to touch.
+              </p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">☀️</span>
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Light</h3>
-              <p className="text-gray-600">Bright, indirect light. Avoid direct sunlight.</p>
+              <p className="text-gray-600">
+                Bright, indirect light. Avoid direct sunlight.
+              </p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">🌡️</span>
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Temperature</h3>
-              <p className="text-gray-600">Keep between 65-75°F (18-24°C) for optimal growth.</p>
+              <p className="text-gray-600">
+                Keep between 65-75°F (18-24°C) for optimal growth.
+              </p>
             </div>
           </div>
         </div>
@@ -210,9 +235,11 @@ const PlantDetailPage: React.FC = () => {
         {/* Plants you may like */}
         {similarPlants.length > 0 && (
           <div className="mt-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Plants you may like</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Plants you may like
+            </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-              {similarPlants.map(similarPlant => (
+              {similarPlants.map((similarPlant) => (
                 <PlantCard key={similarPlant.id} plant={similarPlant} />
               ))}
             </div>
